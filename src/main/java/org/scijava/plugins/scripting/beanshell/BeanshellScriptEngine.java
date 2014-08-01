@@ -47,7 +47,7 @@ import org.scijava.script.AbstractScriptEngine;
 import org.scijava.util.LineOutputStream;
 
 /**
- * Beanshell support for ImageJ
+ * BeanShell support for SciJava.
  * 
  * @author Johannes Schindelin
  */

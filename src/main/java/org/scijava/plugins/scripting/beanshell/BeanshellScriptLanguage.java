@@ -41,7 +41,7 @@ import org.scijava.script.AbstractScriptLanguage;
 import org.scijava.script.ScriptLanguage;
 
 /**
- * An adapter of the Beanshell interpreter to ImageJ's scripting interfaces.
+ * An adapter of the BeanShell interpreter to the SciJava scripting interface.
  * 
  * @author Johannes Schindelin
  * @see ScriptEngine
