@@ -31,6 +31,8 @@
 
 package org.scijava.plugins.scripting.beanshell;
 
+import bsh.Primitive;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -57,6 +59,18 @@ public class BeanshellScriptLanguage extends AbstractScriptLanguage {
 	@Override
 	public ScriptEngine getScriptEngine() {
 		return new BeanshellScriptEngine();
+	}
+
+	@Override
+	public Object decode(final Object object) {
+		if (object instanceof Primitive) {
+			final Primitive p = (Primitive) object;
+			if (p == Primitive.VOID || p == Primitive.NULL) {
+				// NB: No return value, or null return value. So decode to null.
+				return null;
+			}
+		}
+		return object;
 	}
 
 }
