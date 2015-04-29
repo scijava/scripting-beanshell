@@ -1,3 +1,5 @@
+![](http://jenkins.imagej.net/job/scripting-BeanShell/lastBuild/badge/icon)
+
 # BeanShell Scripting
 
 This library provides a
