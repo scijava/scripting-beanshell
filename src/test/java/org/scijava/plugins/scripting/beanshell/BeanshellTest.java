@@ -43,6 +43,7 @@ import javax.script.ScriptException;
 
 import org.junit.Test;
 import org.scijava.Context;
+import org.scijava.script.AbstractScriptLanguageTest;
 import org.scijava.script.ScriptLanguage;
 import org.scijava.script.ScriptModule;
 import org.scijava.script.ScriptService;
@@ -51,8 +52,14 @@ import org.scijava.script.ScriptService;
  * Unit tests for the Beanshell support.
  * 
  * @author Johannes Schindelin
+ * @author Curtis Rueden
  */
-public class BeanshellTest {
+public class BeanshellTest extends AbstractScriptLanguageTest {
+
+	@Test
+	public void testDiscovery() {
+		assertDiscovered(BeanshellScriptLanguage.class);
+	}
 
 	@Test
 	public void testBasic() throws InterruptedException, ExecutionException,
