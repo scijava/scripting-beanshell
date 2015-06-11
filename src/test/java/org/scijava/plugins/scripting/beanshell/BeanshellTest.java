@@ -43,7 +43,6 @@ import javax.script.ScriptException;
 
 import org.junit.Test;
 import org.scijava.Context;
-import org.scijava.plugins.scripting.beanshell.BeanshellScriptEngine;
 import org.scijava.script.ScriptLanguage;
 import org.scijava.script.ScriptModule;
 import org.scijava.script.ScriptService;
