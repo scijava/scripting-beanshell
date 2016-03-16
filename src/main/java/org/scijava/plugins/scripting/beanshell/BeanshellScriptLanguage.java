@@ -47,7 +47,7 @@ import bsh.engine.BshScriptEngineFactory;
  * @author Johannes Schindelin
  * @see ScriptEngine
  */
-@Plugin(type = ScriptLanguage.class, name = "BeanShell")
+@Plugin(type = ScriptLanguage.class, name = "Beanshell")
 public class BeanshellScriptLanguage extends AdaptedScriptLanguage {
 
 	public BeanshellScriptLanguage() {
