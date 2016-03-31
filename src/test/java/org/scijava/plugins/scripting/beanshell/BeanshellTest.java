@@ -48,8 +48,6 @@ import org.scijava.script.ScriptLanguage;
 import org.scijava.script.ScriptModule;
 import org.scijava.script.ScriptService;
 
-import bsh.engine.BshScriptEngine;
-
 /**
  * Unit tests for the Beanshell support.
  * 
@@ -82,14 +80,14 @@ public class BeanshellTest extends AbstractScriptLanguageTest {
 
 		final ScriptLanguage language = scriptService.getLanguageByExtension("bsh");
 		final ScriptEngine engine = language.getScriptEngine();
-		assertEquals(BshScriptEngine.class, engine.getClass());
+		assertEquals(BeanshellScriptEngine.class, engine.getClass());
 		engine.put("hello", 17);
 		assertEquals("17", engine.eval("hello").toString());
 		assertEquals("17", engine.get("hello").toString());
 
 		final Bindings bindings = engine.getBindings(ScriptContext.ENGINE_SCOPE);
 		bindings.clear();
-		assertEquals(null, engine.get("hello"));
+		assertEquals("void", engine.get("hello").toString());
 	}
 
 	@Test

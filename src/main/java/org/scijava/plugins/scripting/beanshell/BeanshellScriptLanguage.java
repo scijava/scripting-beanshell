@@ -31,27 +31,34 @@
 
 package org.scijava.plugins.scripting.beanshell;
 
+import bsh.Primitive;
+
+import java.util.Arrays;
+import java.util.List;
+
 import javax.script.ScriptEngine;
 
 import org.scijava.plugin.Plugin;
-import org.scijava.script.AdaptedScriptLanguage;
+import org.scijava.script.AbstractScriptLanguage;
 import org.scijava.script.ScriptLanguage;
 
-import bsh.Primitive;
-import bsh.engine.BshScriptEngineFactory;
-
 /**
- * An adapter of the {@link BshScriptEngineFactory} to the SciJava scripting interface.
+ * An adapter of the BeanShell interpreter to the SciJava scripting interface.
  * 
- * @author Mark Hiner
  * @author Johannes Schindelin
  * @see ScriptEngine
  */
-@Plugin(type = ScriptLanguage.class, name = "Beanshell")
-public class BeanshellScriptLanguage extends AdaptedScriptLanguage {
+@Plugin(type = ScriptLanguage.class, name = "BeanShell")
+public class BeanshellScriptLanguage extends AbstractScriptLanguage {
 
-	public BeanshellScriptLanguage() {
-		super(new BshScriptEngineFactory());
+	@Override
+	public List<String> getExtensions() {
+		return Arrays.asList("bsh", "bs");
+	}
+
+	@Override
+	public ScriptEngine getScriptEngine() {
+		return new BeanshellScriptEngine();
 	}
 
 	@Override
