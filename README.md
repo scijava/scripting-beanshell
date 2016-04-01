@@ -18,5 +18,5 @@ platform, see the
 the SciJava Common wiki.
 
 See also:
-* [BeanShell Scripting](http://wiki.imagej.net/Beanshell_Scripting)
+* [BeanShell Scripting](http://wiki.imagej.net/BeanShell_Scripting)
   on the ImageJ wiki.
