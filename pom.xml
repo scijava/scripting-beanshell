@@ -63,8 +63,8 @@
 		<url>https://github.com/scijava/scripting-beanshell/issues</url>
 	</issueManagement>
 	<ciManagement>
-		<system>Jenkins</system>
-		<url>http://jenkins.imagej.net/job/scripting-BeanShell/</url>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/scijava/scripting-beanshell</url>
 	</ciManagement>
 
 	<properties>

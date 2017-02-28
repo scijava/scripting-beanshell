@@ -1,4 +1,4 @@
-[![](http://jenkins.imagej.net/job/scripting-BeanShell/lastBuild/badge/icon)](http://jenkins.imagej.net/job/scripting-BeanShell/)
+[![](https://travis-ci.org/scijava/scripting-beanshell.svg?branch=master)](https://travis-ci.org/scijava/scripting-beanshell)
 
 # BeanShell Scripting
 
