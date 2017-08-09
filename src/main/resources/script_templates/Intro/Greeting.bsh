@@ -28,8 +28,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-// @String name
-// @OUTPUT String greeting
+
+#@ String name
+#@ OUTPUT String greeting
 
 // A BeanShell script with parameters.
 // It is the duty of the scripting framework to harvest
