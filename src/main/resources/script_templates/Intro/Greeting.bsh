@@ -1,5 +1,5 @@
 #@ String name
-#@ OUTPUT String greeting
+#@output String greeting
 
 // A BeanShell script with parameters.
 // It is the duty of the scripting framework to harvest
