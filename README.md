@@ -1,4 +1,4 @@
-[![](https://travis-ci.org/scijava/scripting-beanshell.svg?branch=master)](https://travis-ci.org/scijava/scripting-beanshell)
+[![](https://github.com/scijava/scripting-beanshell/actions/workflows/build-main.yml/badge.svg)](https://github.com/scijava/scripting-beanshell/actions/workflows/build-main.yml)
 
 # BeanShell Scripting
 
