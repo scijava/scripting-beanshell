@@ -114,4 +114,25 @@ public class BeanshellTest extends AbstractScriptLanguageTest {
 		assertEquals(expected, result);
 	}
 
+	@Test
+	public void testNull() throws InterruptedException, ExecutionException,
+		IOException, ScriptException
+	{
+		final Context context = new Context(ScriptService.class);
+		final ScriptService scriptService = context.getService(ScriptService.class);
+
+		final String script = "" + //
+			"#@ ScriptService ss\n" + //
+			"#@output String ternary\n" + //
+			"a = null;\n" + //
+			"ternary = a == null ? \"NULL\" : \"HUH?\";\n";
+		final ScriptModule m = scriptService.run("nullTest.bsh", script, true).get();
+
+		final Object actual = m.getOutput("ternary");
+		final String expected = "NULL";
+		assertEquals(expected, actual);
+
+		final Object result = m.getReturnValue();
+		assertEquals(expected, result);
+	}
 }
