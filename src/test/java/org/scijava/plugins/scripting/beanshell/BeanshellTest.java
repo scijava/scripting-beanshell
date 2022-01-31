@@ -48,6 +48,8 @@ import org.scijava.script.ScriptLanguage;
 import org.scijava.script.ScriptModule;
 import org.scijava.script.ScriptService;
 
+import bsh.BshScriptEngine;
+
 /**
  * Unit tests for the Beanshell support.
  * 
@@ -80,14 +82,14 @@ public class BeanshellTest extends AbstractScriptLanguageTest {
 
 		final ScriptLanguage language = scriptService.getLanguageByExtension("bsh");
 		final ScriptEngine engine = language.getScriptEngine();
-		assertEquals(BeanshellScriptEngine.class, engine.getClass());
+		assertEquals(BshScriptEngine.class, engine.getClass());
 		engine.put("hello", 17);
 		assertEquals("17", engine.eval("hello").toString());
 		assertEquals("17", engine.get("hello").toString());
 
 		final Bindings bindings = engine.getBindings(ScriptContext.ENGINE_SCOPE);
 		bindings.clear();
-		assertEquals("void", engine.get("hello").toString());
+		assertEquals(null, engine.get("hello"));
 	}
 
 	@Test
@@ -98,14 +100,14 @@ public class BeanshellTest extends AbstractScriptLanguageTest {
 		final ScriptService scriptService = context.getService(ScriptService.class);
 
 		final String script = "" + //
-			"// @ScriptService ss\n" + //
-			"// @OUTPUT String language\n" + //
-			"language = ss.getLanguageByName(\"Beanshell\").getLanguageName();\n";
+			"#@ ScriptService ss\n" + //
+			"#@output String language\n" + //
+			"language = ss.getLanguageByName(\"BeanShell\").getLanguageName();\n";
 		final ScriptModule m = scriptService.run("hello.bsh", script, true).get();
 
 		final Object actual = m.getOutput("language");
 		final String expected =
-			scriptService.getLanguageByName("Beanshell").getLanguageName();
+			scriptService.getLanguageByName("BeanShell").getLanguageName();
 		assertEquals(expected, actual);
 
 		final Object result = m.getReturnValue();
