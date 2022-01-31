@@ -94,7 +94,16 @@ Institute of Molecular Cell Biology and Genetics.</license.copyrightOwners>
 
 		<!-- NB: Deploy releases to the SciJava Maven repository. -->
 		<releaseProfiles>sign,deploy-to-scijava</releaseProfiles>
+
+		<bsh.version>2.1.0</bsh.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>scijava.public</id>
+			<url>https://maven.scijava.org/content/groups/public</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<!-- SciJava dependencies -->
@@ -107,7 +116,7 @@ Institute of Molecular Cell Biology and Genetics.</license.copyrightOwners>
 		<dependency>
 			<groupId>org.apache-extras.beanshell</groupId>
 			<artifactId>bsh</artifactId>
-			<version>2.0b6</version>
+			<version>${bsh.version}</version>
 		</dependency>
 
 		<!-- Test dependencies -->
