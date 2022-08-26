@@ -41,6 +41,8 @@ import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.scijava.Context;
 import org.scijava.script.AbstractScriptLanguageTest;
@@ -51,12 +53,29 @@ import org.scijava.script.ScriptService;
 import bsh.BshScriptEngine;
 
 /**
- * Unit tests for the Beanshell support.
+ * Unit tests for the BeanShell support.
  * 
  * @author Johannes Schindelin
  * @author Curtis Rueden
  */
 public class BeanshellTest extends AbstractScriptLanguageTest {
+
+	private Context context;
+	private ScriptService scriptService;
+
+	@Before
+	public void setUp() {
+		context = new Context(ScriptService.class);
+		scriptService = context.getService(ScriptService.class);
+
+	}
+
+	@After
+	public void tearDown() {
+		context.dispose();
+		context = null;
+		scriptService = null;
+	}
 
 	@Test
 	public void testDiscovery() {
@@ -64,11 +83,7 @@ public class BeanshellTest extends AbstractScriptLanguageTest {
 	}
 
 	@Test
-	public void testBasic() throws InterruptedException, ExecutionException,
-		IOException, ScriptException
-	{
-		final Context context = new Context(ScriptService.class);
-		final ScriptService scriptService = context.getService(ScriptService.class);
+	public void testBasic() throws InterruptedException, ExecutionException {
 		final String script = "x = 1 + 2;";
 		final ScriptModule m = scriptService.run("add.bsh", script, true).get();
 		final Integer result = (Integer) m.getReturnValue();
@@ -77,9 +92,6 @@ public class BeanshellTest extends AbstractScriptLanguageTest {
 
 	@Test
 	public void testLocals() throws ScriptException {
-		final Context context = new Context(ScriptService.class);
-		final ScriptService scriptService = context.getService(ScriptService.class);
-
 		final ScriptLanguage language = scriptService.getLanguageByExtension("bsh");
 		final ScriptEngine engine = language.getScriptEngine();
 		assertEquals(BshScriptEngine.class, engine.getClass());
@@ -93,12 +105,7 @@ public class BeanshellTest extends AbstractScriptLanguageTest {
 	}
 
 	@Test
-	public void testParameters() throws InterruptedException, ExecutionException,
-		IOException, ScriptException
-	{
-		final Context context = new Context(ScriptService.class);
-		final ScriptService scriptService = context.getService(ScriptService.class);
-
+	public void testParameters() throws InterruptedException, ExecutionException {
 		final String script = "" + //
 			"#@ ScriptService ss\n" + //
 			"#@output String language\n" + //
@@ -115,12 +122,7 @@ public class BeanshellTest extends AbstractScriptLanguageTest {
 	}
 
 	@Test
-	public void testNull() throws InterruptedException, ExecutionException,
-		IOException, ScriptException
-	{
-		final Context context = new Context(ScriptService.class);
-		final ScriptService scriptService = context.getService(ScriptService.class);
-
+	public void testNull() throws InterruptedException, ExecutionException {
 		final String script = "" + //
 			"#@ ScriptService ss\n" + //
 			"#@output String ternary\n" + //
