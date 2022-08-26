@@ -33,7 +33,8 @@ package org.scijava.plugins.scripting.beanshell;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javax.script.Bindings;
@@ -136,5 +137,18 @@ public class BeanshellTest extends AbstractScriptLanguageTest {
 
 		final Object result = m.getReturnValue();
 		assertEquals(expected, result);
+	}
+
+	@Test
+	public void testExtensionsMimeTypesNames() {
+		// NB: We *don't* want BeanShell to claim ownership of .java files!
+		final ScriptLanguage lang = scriptService.getLanguageByExtension("bsh");
+		final List<String> expectedExtensions = Arrays.asList("bsh");
+		assertEquals(expectedExtensions, lang.getExtensions());
+		final List<String> expectedMimeTypes = Arrays.asList(
+			"application/x-beanshell", "application/x-bsh");
+		assertEquals(expectedMimeTypes, lang.getMimeTypes());
+		final List<String> expectedNames = Arrays.asList("beanshell", "bsh");
+		assertEquals(expectedNames, lang.getNames());
 	}
 }

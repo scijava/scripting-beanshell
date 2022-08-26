@@ -31,6 +31,9 @@
 
 package org.scijava.plugins.scripting.beanshell;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.script.ScriptEngine;
 
 import org.scijava.plugin.Plugin;
@@ -44,6 +47,7 @@ import bsh.Primitive;
  * An adapter of the {@link BshScriptEngineFactory} to the SciJava scripting interface.
  * 
  * @author Mark Hiner
+ * @author Curtis Rueden
  * @author Johannes Schindelin
  * @see ScriptEngine
  */
@@ -53,6 +57,8 @@ public class BeanshellScriptLanguage extends AdaptedScriptLanguage {
 	public BeanshellScriptLanguage() {
 		super(new BshScriptEngineFactory());
 	}
+
+	// -- ScriptLanguage methods --
 
 	@Override
 	public Object decode(final Object object) {
@@ -66,4 +72,29 @@ public class BeanshellScriptLanguage extends AdaptedScriptLanguage {
 		return object;
 	}
 
+	// -- ScriptEngineFactory methods --
+
+	// NB: BeanShell must *not* claim ownership of .java files!
+	// It clashes with the scripting-java script language.
+
+	@Override
+	public List<String> getExtensions() {
+		return super.getExtensions().stream()//
+			.filter(extension -> !"java".equals(extension))//
+			.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<String> getMimeTypes() {
+		return super.getMimeTypes().stream()//
+			.filter(mimeType -> !"application/x-java-source".equals(mimeType))//
+			.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<String> getNames() {
+		return super.getNames().stream()//
+			.filter(name -> !"java".equalsIgnoreCase(name))//
+			.collect(Collectors.toList());
+	}
 }
