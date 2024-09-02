@@ -51,7 +51,7 @@ import org.scijava.script.ScriptLanguage;
 import org.scijava.script.ScriptModule;
 import org.scijava.script.ScriptService;
 
-import bsh.BshScriptEngine;
+import bsh.engine.BshScriptEngine;
 
 /**
  * Unit tests for the BeanShell support.

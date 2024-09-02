@@ -40,8 +40,8 @@ import org.scijava.plugin.Plugin;
 import org.scijava.script.AdaptedScriptLanguage;
 import org.scijava.script.ScriptLanguage;
 
-import bsh.BshScriptEngineFactory;
 import bsh.Primitive;
+import bsh.engine.BshScriptEngineFactory;
 
 /**
  * An adapter of the {@link BshScriptEngineFactory} to the SciJava scripting interface.
